@@ -42,7 +42,7 @@ python script/test_gaussian_rasterization.py
 
 We provide the example scenes [here](https://drive.google.com/drive/folders/1ghpE_kBwqXiWgiSWAajByjPsmj1y0l1H). You can directly download the data and skip the following steps for a quick start.
 
-#### Download the training and validation set of [Waymo Open Dataset](https://console.cloud.google.com/storage/browser/waymo_open_dataset_v_1_4_1/individual_files?pageState=(%22StorageObjectListTable%22:(%22f%22:%22%255B%255D%22))). 
+#### Download the training and validation set of [Waymo Open Dataset](https://console.cloud.google.com/storage/browser/waymo_open_dataset_v_1_4_1/individual_files?pageState=(%22StorageObjectListTable%22:(%22f%22:%22%255B%255D%22))). （需要 gcloud SDK 下载 Waymo Open Dataset， 可以见我的 S3Gaussian 的笔记 [S3Gaussian](https://github.com/qingpowuwu/S3Gaussian/blob/main/docs/prepare_data.md) )
 We provide the split file following [EmerNeRF](https://emernerf.github.io/https://emernerf.github.io/). You can refer to [this document](https://github.com/NVlabs/EmerNeRF/blob/main/docs/NOTR.md) for download details. 
 <!-- Please note that `val_dynamic.txt` specify scenes from the validation set, which means you may need to change the file source [here](https://github.com/NVlabs/EmerNeRF/blob/8c051d7cccbad3b52c7b11a519c971b8ead97e1a/datasets/download_waymo.py#L31). -->
 
@@ -89,6 +89,16 @@ The parameters used are listed in `lib/config/config.py` with brief comments. --
 ```
 python train.py --config configs/xxxx.yaml
 ```
+---------------
+我的 example codes
+``` 
+conda activate streetgs
+cd /home/qingpo.wuwu1/Project_1_3DGS_CARS/1_Ours/StreetGaussian-2dgs_rasterizer/street_gaussians-v3-加入提取mesh的代码
+export CUDA_VISIBLE_DEVICES=1
+
+python train.py --config /home/qingpo.wuwu1/Project_1_3DGS_CARS/1_Ours/StreetGaussian-2dgs_rasterizer/street_gaussians-v3-加入提取mesh的代码/configs/example/waymo_train_002.yaml
+```
+---------------
 
 Training on example scenes
 ```
@@ -104,6 +114,15 @@ bash script/waymo/train_waymo_exp.sh
 ```
 python render.py --config configs/xxxx.yaml mode {evaluate, trajectory}
 ```
+---------------
+我的 example codes
+```
+conda activate streetgs
+cd /home/qingpo.wuwu1/Project_1_3DGS_CARS/1_Ours/StreetGaussian-2dgs_rasterizer/street_gaussians-v3-加入提取mesh的代码
+python render.py --config /home/qingpo.wuwu1/Project_1_3DGS_CARS/1_Ours/StreetGaussian-2dgs_rasterizer/street_gaussians-v3-加入提取mesh的代码/configs/example/waymo_train_002.yaml mode trajectory
+```
+---------------
+
 Rendering on example scenes
 ```
 bash script/waymo/render_waymo_expample.sh
